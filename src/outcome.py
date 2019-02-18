@@ -32,3 +32,6 @@ class Outcome:
 
     def __str__(self):
         return "{0} (odds:{1})".format(self.name, self.odds)
+
+    def __hash__(self):
+        return hash(self.name)
