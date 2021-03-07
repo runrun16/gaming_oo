@@ -1,3 +1,7 @@
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
 class Outcome:
     """A single outcome that could be bet on
 
@@ -5,10 +9,8 @@ class Outcome:
         name (int): outcome name
         odss (int): odds: 1
     """
-
-    def __init__(self, name, odds):
-        self.name = name
-        self.odds = odds
+    name: str
+    odds: int
 
     def win_amount(self, amount):
         """how much win if put amount of bet on this outcome
@@ -31,7 +33,10 @@ class Outcome:
         return self.name != other.name
 
     def __str__(self):
-        return "{0} (odds:{1})".format(self.name, self.odds)
+        return f"{self.name} {self.odds}:1"
+
+    def __repr__(self):
+        return f"Outcome(name='{self.name}', odds={self.odds})"
 
     def __hash__(self):
         return hash(self.name)
