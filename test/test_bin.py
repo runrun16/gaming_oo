@@ -11,25 +11,12 @@ class TestBin(unittest.TestCase):
 
     def test_initilaizer(self):
         bin_empty = Bin()
-        self.assertEqual(str(bin_empty), "")
+        self.assertEqual(str(bin_empty), "Bin()")
 
-        bin_one_black = Bin(self.outcome_black1)
-        self.assertEqual(str(bin_one_black), str(self.outcome_black1)) 
+        bin_one_black = Bin([self.outcome_black1])
+        self.assertEqual(str(bin_one_black), f"Bin({{{repr(self.outcome_black1)}}})")
 
-        bin_two_outcomes = Bin(self.outcome_black1, self.outcome_straight5)
-        expected_str = str(self.outcome_black1) + "," + str(self.outcome_straight5)
-        self.assertEqual(str(bin_two_outcomes), expected_str) 
+        bin_two_outcomes = Bin([self.outcome_black1, self.outcome_straight5])
+        expected_str = f"Bin({{{repr(self.outcome_straight5)}, {repr(self.outcome_black1)}}})"
+        self.assertEqual(expected_str, str(bin_two_outcomes))
 
-    def test_add_same_outcome(self):
-        bin_to_use = Bin(self.outcome_black1)
-        bin_to_use.add(self.outcome_black2)
-        self.assertEqual(str(bin_to_use), str(self.outcome_black1))
-        bin_to_use.add(self.outcome_straight5)
-        expected_str = str(self.outcome_black1) + "," + str(self.outcome_straight5)
-        self.assertEqual(str(bin_to_use), expected_str)
-
-    def test_string(self):
-        self.assertEqual(str(self.outcome_black1), "Black (odds:2)")
-
-if __name__ == '__main__':
-    unittest.main()
