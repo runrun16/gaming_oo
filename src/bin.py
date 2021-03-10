@@ -1,4 +1,4 @@
-class Bin(frozenset):
+class Bin(set):
     """Each bin on the wheel
 
     Attributes:
